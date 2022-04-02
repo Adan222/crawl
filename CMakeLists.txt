@@ -19,7 +19,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 include_directories(${PROJECT_NAME} ${CMAKE_SOURCE_DIR})
 
-# find ccache
-include(${CMAKE_SOURCE_DIR}/cmake/ccache.cmake)
+# cmake include path:
+set(CRAWL_CMAKE_INCLUDE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+# all includes
+include(${CRAWL_CMAKE_INCLUDE_PATH}/ccache.cmake)
 
 add_subdirectory(src)
