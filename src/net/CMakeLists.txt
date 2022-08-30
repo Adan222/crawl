@@ -1,5 +1,3 @@
-include(${CRAWL_CMAKE_INCLUDE_PATH}/lib_include.cmake)
-
 set(NET_LIB_NAME net)
 set(NET_LIB_SRC 
     socket/socket.hpp
@@ -18,7 +16,3 @@ add_library(${NET_LIB_NAME} ${NET_LIB_SRC})
 target_include_directories(${NET_LIB_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${NET_LIB_NAME})
-
-if(${TEST_BUILD_NET_LIB_TEST})
-    BuildTest(${NET_LIB_NAME})
-endif()
