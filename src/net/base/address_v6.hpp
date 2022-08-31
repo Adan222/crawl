@@ -12,7 +12,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "net/ip/basic_address.hpp"
+#include "net/base/basic_address.hpp"
 
 namespace net {
 namespace ip {

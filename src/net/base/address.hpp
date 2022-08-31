@@ -5,8 +5,8 @@
 
 #include <sys/socket.h>
 
-#include "net/ip/address_v4.hpp"
-#include "net/ip/address_v6.hpp"
+#include "net/base/address_v4.hpp"
+#include "net/base/address_v6.hpp"
 
 namespace net {
 namespace ip {
