@@ -1,34 +1,23 @@
-#include "net/ip/address_v6.hpp"
-#include <cstdint>
-#include <cstdio>
-#include <cstring>
-#include <string>
+#include "net/base/address_v6.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 AddressV6::AddressV6() :
     BasicAddress()
 {
-    CreateEmptyAddr();
+    /* Create empty address */
+    std::memset(&addr_, 0, 16);
 }
 
 AddressV6::AddressV6(std::uint8_t bytes[16]) : 
     BasicAddress(),
     addr_()
 {
-    CopyAddr(bytes);
+    /* Create address from raw bytes */
+    std::memcpy(&addr_, bytes, 16);
 }
 
 AddressV6::~AddressV6() {}
-
-void AddressV6::CreateEmptyAddr() {
-    std::memset(addr_, 0, 16);
-}
-
-void AddressV6::CopyAddr(std::uint8_t bytes[16]) {
-    std::memcpy(addr_, bytes, 16);
-}
 
 std::string AddressV6::toString() const {
     /* For now we use system function 
@@ -36,7 +25,7 @@ std::string AddressV6::toString() const {
     */
     struct sockaddr_in6 sa;
     std::memset(&sa, 0, sizeof(sockaddr_in6));
-    std::memcpy(&sa.sin6_addr.s6_addr, addr_, 16);
+    std::memcpy(&sa.sin6_addr.s6_addr, &addr_, 16);
 
     char str[INET6_ADDRSTRLEN];
     inet_ntop(AF_INET6, &(sa.sin6_addr), str, INET6_ADDRSTRLEN);
@@ -44,5 +33,4 @@ std::string AddressV6::toString() const {
     return str; 
 }
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip

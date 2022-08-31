@@ -8,8 +8,7 @@
 #include "net/base/address_v4.hpp"
 #include "net/base/address_v6.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 class Address {
     private:
@@ -32,7 +31,6 @@ class Address {
         int GetProtocol() const;
 };
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
 
 #endif

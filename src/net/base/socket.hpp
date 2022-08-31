@@ -1,9 +1,11 @@
 #ifndef NET_BASE_SOCKET_HPP_
 #define NET_BASE_SOCKET_HPP_
 
+#include "net/base/address.hpp"
 #include <iostream>
 
 #include <sys/socket.h>
+#include <unistd.h>
 
 namespace net {
 
@@ -13,7 +15,8 @@ class Socket {
         int fd_;
 
     public:
-        Socket();
+        Socket() = delete;
+        Socket(const ip::Address &af);
         ~Socket();
 
         inline bool error() const;

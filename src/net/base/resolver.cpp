@@ -1,7 +1,6 @@
-#include "net/ip/resolver.hpp"
+#include "net/base/resolver.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 Resolver::Resolver() {
     CreateHint();
@@ -40,5 +39,4 @@ AddressList Resolver::Resolve(const std::string &domain) {
 
 
 
-} // namespace ip
-} // namespace net
+} // namespace net:ip

@@ -3,8 +3,7 @@
 
 #include <string>
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 class BasicAddress {
     public:
@@ -14,7 +13,6 @@ class BasicAddress {
         virtual std::string toString() const = 0;
 };
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
 
 #endif

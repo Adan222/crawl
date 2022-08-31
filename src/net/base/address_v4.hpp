@@ -8,28 +8,28 @@
 
 #include "net/base/basic_address.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
+
+using AddrLiteral = std::uint32_t;
 
 class AddressV4 : public
     BasicAddress
 {
     private:
-        std::uint32_t addr_;
+        AddrLiteral addr_;
 
     public:
         /* Create empty address */
         AddressV4();
 
         /* Create address from raw int */
-        AddressV4(const std::uint32_t addr);
+        AddressV4(const AddrLiteral addr);
 
         ~AddressV4();
 
         std::string toString() const override;
 };
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
 
 #endif

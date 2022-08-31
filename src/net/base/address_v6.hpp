@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <array>
 
 #include <cstdint>
 #include <cstring>
@@ -14,17 +15,15 @@
 
 #include "net/base/basic_address.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
+
+using Addr6Literal = std::array<std::uint8_t, 16>;
 
 class AddressV6 : public
     BasicAddress
 {
     private:
-        std::uint8_t addr_[16];
-
-        void CreateEmptyAddr();
-        void CopyAddr(std::uint8_t bytes[16]);
+        Addr6Literal addr_;
 
     public:
         /* Create empty address */
@@ -38,7 +37,6 @@ class AddressV6 : public
         std::string toString() const override;
 };
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
 
 #endif

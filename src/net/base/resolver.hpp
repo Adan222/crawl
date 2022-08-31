@@ -10,10 +10,9 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-#include "net/ip/address.hpp"
+#include "net/base/address.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 typedef std::vector<Address> AddressList;
 
@@ -29,7 +28,6 @@ class Resolver {
         AddressList Resolve(const std::string &domain);
 };
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
 
 #endif

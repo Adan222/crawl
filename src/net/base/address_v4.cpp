@@ -1,15 +1,13 @@
-#include "net/ip/address_v4.hpp"
-#include "net/ip/basic_address.hpp"
+#include "net/base/address_v4.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 AddressV4::AddressV4() :
     BasicAddress(),
     addr_(0)
 {}
 
-AddressV4::AddressV4(const std::uint32_t addr) : 
+AddressV4::AddressV4(const AddrLiteral addr) : 
     BasicAddress(),
     addr_(addr)
 {}
@@ -30,5 +28,4 @@ std::string AddressV4::toString() const {
 
 }
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip

@@ -1,7 +1,6 @@
 #include "net/base/address.hpp"
 
-namespace net {
-namespace ip {
+namespace net::ip {
 
 Address::Address() :
     type_()
@@ -20,18 +19,13 @@ Address::Address(const AddressV6 &addr):
 Address::~Address() {}
 
 std::string Address::ToString() const {
-    if(type_ == addrType::ipv4)
-        return addrV4.toString();
-    else
-        return addrV6.toString();        
+    return type_ == addrType::ipv4 ? 
+        addrV4.toString() : addrV6.toString();
 }
 
 int Address::GetProtocol() const {
-    if(type_ == addrType::ipv4)
-        return AF_INET;
-    else
-        return AF_INET6;
+    return type_ == addrType::ipv4 ? 
+        AF_INET : AF_INET6;
 }
 
-} // namespace ip
-} // namespace net
+} // namespace net::ip
