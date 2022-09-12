@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(crowl VERSION 0.0.0)
+project(crawl VERSION 0.0.0)
 
 # C++ standard
 set(CMAKE_CXX_STANDARD 20)

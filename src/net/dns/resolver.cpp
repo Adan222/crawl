@@ -1,4 +1,4 @@
-#include "net/base/resolver.hpp"
+#include "net/dns/resolver.hpp"
 
 namespace net::ip {
 
@@ -15,11 +15,11 @@ void Resolver::CreateHint() {
     hint_.ai_flags = AI_PASSIVE;
 }
 
-AddressList Resolver::Resolve(const std::string &domain) {
-    struct addrinfo *res;
+AddressList Resolver::resolve(const std::string &domain) {
+    /*struct addrinfo *res;
 
     if(int status = getaddrinfo(domain.c_str(), "http", &hint_, &res))
-        std::cout << "Resolve error: " << gai_strerror(status) << "\n";
+        std::cerr << "Resolve error: " << gai_strerror(status) << "\n";
 
     AddressList list;
     for(struct addrinfo* i = res; i != nullptr; i = i->ai_next) {
@@ -29,12 +29,14 @@ AddressList Resolver::Resolve(const std::string &domain) {
         }
         else {
             struct sockaddr_in6 *ip = (struct sockaddr_in6 *)i->ai_addr;
-            list.push_back(AddressV6(ip->sin6_addr.s6_addr));   
+
+            list.push_back(AddressV6(lit));   
         }
     }
     
     freeaddrinfo(res);
-    return list;
+    return list; */
+    return AddressList();
 }
 
 

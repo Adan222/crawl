@@ -2,14 +2,14 @@ set(NET_LIB_NAME net)
 set(NET_LIB_SRC 
     base/socket.hpp
     base/socket.cpp
-    base/address.hpp
-    base/address.cpp
-    base/address_v4.hpp
-    base/address_v4.cpp
-    base/address_v6.hpp
-    base/address_v6.cpp
     base/resolver.hpp
     base/resolver.cpp
+    ip/address.hpp
+    ip/address.cpp
+    ip/address_v4.hpp
+    ip/address_v4.cpp
+    ip/address_v6.hpp
+    ip/address_v6.cpp
 )
 
 add_library(${NET_LIB_NAME} ${NET_LIB_SRC})
