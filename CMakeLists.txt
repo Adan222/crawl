@@ -8,8 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-configure_file( ${CMAKE_SOURCE_DIR}/crawl.hpp.in
-                ${CMAKE_SOURCE_DIR}/src/crawl.hpp)
+configure_file( ${CMAKE_SOURCE_DIR}/config.hpp.in
+                ${CMAKE_SOURCE_DIR}/src/base/config.hpp)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)

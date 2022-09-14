@@ -1,4 +1,5 @@
 #include "net/ip/address_v6.hpp"
+#include <cstring>
 
 namespace net::ip {
 
@@ -19,6 +20,13 @@ std::string AddressV6::toString() const {
     ::inet_ntop(AF_INET6, &addr_, str, INET6_ADDRSTRLEN);
 
     return str; 
+}
+
+AddressV6::v6ByteType AddressV6::toBytes() const {
+    v6ByteType byte;
+    ::memcpy(byte.data(), addr_.s6_addr, 16);
+
+    return byte;
 }
 
 namespace V6 {

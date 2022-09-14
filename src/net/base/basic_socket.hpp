@@ -6,22 +6,25 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include "base/error.hpp"
 #include "net/base/net_types.hpp"
 
 namespace net {
 
-template<int sockType>
-class Socket {
+template<class Proto>
+class BasicSocket {
+    public:
+        typedef Proto protoType;
+
+        BasicSocket();
+        ~BasicSocket();
+
+        void open();
+        void close();
+
     private:
         socketType fd_;
-
-    public:
-        Socket();
-        ~Socket();
 };
-
-using TCPsocket = Socket<SOCK_STREAM>;
-using UDPsocket = Socket<SOCK_DGRAM>;
 
 } // namespace net
 

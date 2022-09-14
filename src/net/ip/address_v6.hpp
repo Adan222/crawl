@@ -28,6 +28,7 @@ class AddressV6 {
         ~AddressV6();
 
         std::string toString() const;
+        v6ByteType toBytes() const;
 
     private:
         in6_addr_type addr_;

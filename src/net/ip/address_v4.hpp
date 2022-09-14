@@ -27,6 +27,7 @@ class AddressV4 {
         ~AddressV4();
 
         std::string toString() const;
+        v4Type toInt() const;
 
     private:
         in4_addr_type addr_;

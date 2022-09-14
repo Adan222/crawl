@@ -14,13 +14,6 @@ namespace net::ip {
 // This class represent both address type so we
 // can use only one class in connections etc.
 class Address {
-    private:
-        enum addrType 
-            { ipv4, ipv6 } type_;
-
-        AddressV4 v4;
-        AddressV6 v6;
-
     public:
         Address();
         Address(const AddressV4 &addr);
@@ -28,10 +21,20 @@ class Address {
 
         ~Address();
 
+        AddressV4 toV4() const;
+        AddressV6 toV6() const;
+
         bool isV4() const;
         bool isV6() const;
 
         std::string toString() const;
+
+    private:
+        enum addrType 
+            { ipv4, ipv6 } type_;
+
+        AddressV4 v4;
+        AddressV6 v6;
 };
 
 } // namespace net::ip

@@ -1,4 +1,5 @@
 #include "net/dns/resolver.hpp"
+#include <cstring>
 
 namespace net::ip {
 
@@ -16,7 +17,7 @@ void Resolver::CreateHint() {
 }
 
 AddressList Resolver::resolve(const std::string &domain) {
-    /*struct addrinfo *res;
+    struct addrinfo *res;
 
     if(int status = getaddrinfo(domain.c_str(), "http", &hint_, &res))
         std::cerr << "Resolve error: " << gai_strerror(status) << "\n";
@@ -29,14 +30,16 @@ AddressList Resolver::resolve(const std::string &domain) {
         }
         else {
             struct sockaddr_in6 *ip = (struct sockaddr_in6 *)i->ai_addr;
+            
+            AddressV6::v6ByteType bytes;
+            ::memcpy(bytes.data(), &ip->sin6_addr, 16);
 
-            list.push_back(AddressV6(lit));   
+            list.push_back(AddressV6(bytes));   
         }
     }
     
     freeaddrinfo(res);
-    return list; */
-    return AddressList();
+    return list;
 }
 
 

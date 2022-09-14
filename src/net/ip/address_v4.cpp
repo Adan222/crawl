@@ -34,6 +34,10 @@ std::string AddressV4::toString() const {
     return ip;
 }
 
+AddressV4::v4Type AddressV4::toInt() const {
+    return addr_.s_addr;
+}
+
 namespace V4 {
 
 AddressV4 fromString(const std::string &str) {

@@ -22,6 +22,14 @@ Address::Address(const AddressV6 &addr):
 
 Address::~Address() {}
 
+AddressV4 Address::toV4() const {
+    return v4;
+}
+
+AddressV6 Address::toV6() const {
+    return v6;
+}
+
 bool Address::isV4() const {
     return type_ == addrType::ipv4;
 }
