@@ -8,6 +8,16 @@
 
 namespace net {
 
+// Forward declaration
+template<typename Proto>
+class BasicEndpoint;
+
+// Freind functions definitions
+template<typename Proto>
+bool operator==(const BasicEndpoint<Proto> &a, const BasicEndpoint<Proto> &b);
+template<typename Proto>
+bool operator!=(const BasicEndpoint<Proto> &a, const BasicEndpoint<Proto> &b);
+
 // This class represent one endpoint in internet.
 // It collect low level linux socket structs, which 
 // you can use for connection.
@@ -18,6 +28,7 @@ class BasicEndpoint {
 
         BasicEndpoint();
         BasicEndpoint(const ip::Address &addr, const portType port);
+        
         ~BasicEndpoint();
 
         void setAddress(const ip::Address &addr);
@@ -25,12 +36,17 @@ class BasicEndpoint {
 
         ip::Address getAddress() const;
         portType getPort() const;
-        sockaddr_type* getData() const;
+        sockaddr_type* getData();
         protoType getProtocol() const;
 
         bool isV4() const;
         bool isV6() const;
-        
+
+        friend bool operator==<>
+            (const BasicEndpoint &a, const BasicEndpoint &b);
+        friend bool operator!=<>
+            (const BasicEndpoint &a, const BasicEndpoint &b);
+
     private:
         union sockTypeData{
             sockaddr_type base;

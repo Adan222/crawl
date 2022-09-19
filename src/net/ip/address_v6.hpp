@@ -14,21 +14,33 @@
 
 namespace net::ip {
 
+// Forward declaraion 
+class AddressV6;
+
+// Friend functions
+bool operator==(const AddressV6 &a, const AddressV6 &b);
+bool operator!=(const AddressV6 &a, const AddressV6 &b);
+
 // This class represent ipv6 address
 class AddressV6 {
     public:
-        using v6ByteType = std::array<std::uint8_t, 16>;
+        using v6ByteArray = std::array<std::uint8_t, 16>;
+        using v6ByteType = std::uint8_t[16];
 
         /* Create empty address */
         AddressV6();
 
         /* Create address from raw bytes */
+        AddressV6(const v6ByteArray &bytes);
         AddressV6(const v6ByteType &bytes);
 
         ~AddressV6();
 
         std::string toString() const;
-        v6ByteType toBytes() const;
+        v6ByteArray toBytes() const;
+
+        friend bool operator==(const AddressV6 &a, const AddressV6 &b);
+        friend bool operator!=(const AddressV6 &a, const AddressV6 &b);
 
     private:
         in6_addr_type addr_;

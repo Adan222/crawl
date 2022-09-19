@@ -6,6 +6,7 @@
 
 #include "net/base/basic_endpoint.hpp"
 #include "net/base/basic_socket.hpp"
+#include "net/ip/resolver.hpp"
 
 namespace net {
 
@@ -13,13 +14,24 @@ class tcp {
     public:
         typedef BasicSocket<tcp> socket;
         typedef BasicEndpoint<tcp> endpoint;
+        typedef ip::BasicResolver<tcp> resolver;
 
         static tcp v4() noexcept;
         static tcp v6() noexcept;
+        
+        // return socket type i.e. SOCK_STREAM
+        // or SOCK_DGRAM
+        int sockType() const;
 
-        constexpr int type() const;
-        constexpr int proto() const;
-        constexpr int family() const;
+        // return protocol type i.e. TCP
+        // or UDP
+        int proto() const;
+
+        // return AF_INET or AF_INET6
+        int family() const;
+
+        friend bool operator==(const tcp &a, const tcp &b);
+        friend bool operator!=(const tcp &a, const tcp &b);
 
     private:
         explicit tcp(int af);

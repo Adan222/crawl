@@ -38,6 +38,14 @@ AddressV4::v4Type AddressV4::toInt() const {
     return addr_.s_addr;
 }
 
+bool operator==(const AddressV4 &a, const AddressV4 &b) {
+    return a.addr_.s_addr == b.addr_.s_addr;
+}
+
+bool operator!=(const AddressV4 &a, const AddressV4 &b) {
+    return !(a == b);
+}
+
 namespace V4 {
 
 AddressV4 fromString(const std::string &str) {

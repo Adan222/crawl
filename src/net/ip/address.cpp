@@ -43,5 +43,18 @@ std::string Address::toString() const {
         v4.toString() : v6.toString();
 }
 
+bool operator==(const Address &a, const Address &b) {
+    if(a.type_ != b.type_)
+        return false;
+    if(a.type_ == Address::addrType::ipv4)
+        a.v4 == b.v4;
+    else
+        a.v6 == b.v6;
+}
+
+bool operator!=(const Address &a, const Address &b) {
+    return !(a == b);
+}
+
 
 } // namespace net::ip

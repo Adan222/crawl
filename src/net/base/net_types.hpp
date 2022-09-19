@@ -18,6 +18,7 @@ typedef in6_addr in6_addr_type;
 typedef sockaddr sockaddr_type;
 typedef sockaddr_in sockaddr_v4_type;
 typedef sockaddr_in6 sockaddr_v6_type;
+typedef addrinfo addrinfo_type;
 
 } // namespace net
 

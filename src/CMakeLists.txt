@@ -7,12 +7,13 @@
 # then download it from repo, so...
 # TODO: cmake crypto++
 
-include(FetchContent)
-FetchContent_Declare(
-    cryptopp
-    GIT_REPOSITORY https://github.com/abdes/cryptopp-cmake.git
-)
-FetchContent_MakeAvailable(cryptopp)
+# for now we don`t use it
+#include(FetchContent)
+#FetchContent_Declare(
+#    cryptopp
+#    GIT_REPOSITORY https://github.com/abdes/cryptopp-cmake.git
+#)
+#FetchContent_MakeAvailable(cryptopp)
 
 # All subdirectory here:
 add_subdirectory(base)
@@ -25,7 +26,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
 # crypto++
-target_link_libraries(${PROJECT_NAME} PUBLIC cryptopp)
-target_include_directories(${PROJECT_NAME} PUBLIC cryptopp)
+#target_link_libraries(${PROJECT_NAME} PUBLIC cryptopp)
+#target_include_directories(${PROJECT_NAME} PUBLIC cryptopp)
 
 

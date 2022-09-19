@@ -1,10 +1,12 @@
 #include <iostream>
 
-#include "net/dns/resolver.hpp"
+#include "net/base/tcp.hpp"
 
 int main () {
-    net::ip::Resolver res;
+    net::tcp::resolver res;
+    net::tcp::resolver::query q("www.google.com", "http");
 
-    for(const auto &i : res.resolve("www.google.com"))
-        std::cout << i.toString() << "\n";
+    auto r = res.resolve(q);
+    for(const auto &i : r)
+        std::cout << i.getAddress().toString() << "\n";
 }

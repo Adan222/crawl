@@ -11,6 +11,13 @@
 
 namespace net::ip {
 
+// Forward declaration
+class AddressV4;
+
+// Friend functions
+bool operator==(const AddressV4 &a, const AddressV4 &b);
+bool operator!=(const AddressV4 &a, const AddressV4 &b);
+
 // This class represent ipv4 address
 class AddressV4 {
     public:
@@ -28,6 +35,9 @@ class AddressV4 {
 
         std::string toString() const;
         v4Type toInt() const;
+
+        friend bool operator==(const AddressV4 &a, const AddressV4 &b);
+        friend bool operator!=(const AddressV4 &a, const AddressV4 &b);
 
     private:
         in4_addr_type addr_;

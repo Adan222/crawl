@@ -1,5 +1,4 @@
 #include "net/ip/address_v6.hpp"
-#include <cstring>
 
 namespace net::ip {
 
@@ -8,8 +7,12 @@ AddressV6::AddressV6() {
     ::memset(&addr_, 0, 16);
 }
 
-AddressV6::AddressV6(const v6ByteType &bytes) {
+AddressV6::AddressV6(const v6ByteArray &bytes) {
     /* Create address from raw bytes */
+    ::memcpy(&addr_, &bytes, 16);
+}
+
+AddressV6::AddressV6(const v6ByteType &bytes) {
     ::memcpy(&addr_, &bytes, 16);
 }
 
@@ -22,11 +25,19 @@ std::string AddressV6::toString() const {
     return str; 
 }
 
-AddressV6::v6ByteType AddressV6::toBytes() const {
-    v6ByteType byte;
+AddressV6::v6ByteArray AddressV6::toBytes() const {
+    v6ByteArray byte;
     ::memcpy(byte.data(), addr_.s6_addr, 16);
 
     return byte;
+}
+
+bool operator==(const AddressV6 &a, const AddressV6 &b) {
+    return (::memcmp(&a.addr_, &b.addr_, sizeof(in6_addr_type)) == 0);
+}
+
+bool operator!=(const AddressV6 &a, const AddressV6 &b) {
+    return !(a == b);
 }
 
 namespace V6 {
@@ -36,7 +47,7 @@ AddressV6 fromString(const std::string &str) {
 }
 
 AddressV6 fromString(const char *str) {
-    AddressV6::v6ByteType addr;
+    AddressV6::v6ByteArray addr;
     ::inet_pton(AF_INET6, str, addr.data());
 
     return AddressV6(addr);

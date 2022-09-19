@@ -14,18 +14,26 @@ tcp tcp::v6() noexcept {
     return tcp(AF_INET);
 }
 
-constexpr int tcp::type() const {
+int tcp::sockType() const {
     return SOCK_STREAM;
 }
 
-constexpr int tcp::proto() const {
+int tcp::proto() const {
     return IPPROTO_TCP;
 }
 
-constexpr int tcp::family() const {
+int tcp::family() const {
     return af_;
 }
 
+bool operator!=(const tcp &a, const tcp &b)
+{
+    return a.af_ == b.af_;
+}
 
+bool operator==(const tcp &a, const tcp &b)
+{
+    return a.af_ != b.af_;
+}
 
 } // namespace net
