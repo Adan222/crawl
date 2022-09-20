@@ -30,16 +30,12 @@ class BasicResoults : public
     public:
         using endpoint = typename Proto::endpoint;
         using vectorType = std::vector<endpoint>;
-        using iterator = typename vectorType::iterator;
 
         BasicResoults();
         ~BasicResoults();
 
         // copy constructor
         BasicResoults(const BasicResoults &other);
-
-        iterator begin();
-        iterator end();
 
         friend bool operator==<>(const BasicResoults<Proto> &a,
             const BasicResoults<Proto> &b);

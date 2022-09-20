@@ -54,6 +54,21 @@ const BasicEndpoint<Proto>*
 }
 
 template<typename Proto>
+typename BasicResoultsIterator<Proto>::iterator
+    BasicResoultsIterator<Proto>::begin() 
+{
+    return this->data_.begin();
+}
+
+template<typename Proto>
+typename BasicResoultsIterator<Proto>::iterator
+    BasicResoultsIterator<Proto>::end() 
+{
+    return this->data_.end();
+}
+
+
+template<typename Proto>
 bool operator==
     (const BasicResoultsIterator<Proto> &a, 
      const BasicResoultsIterator<Proto> &b)

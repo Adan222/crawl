@@ -1,4 +1,6 @@
 #include "net/ip/address.hpp"
+#include "net/ip/address_v4.hpp"
+#include "net/ip/address_v6.hpp"
 
 namespace net::ip {
 
@@ -19,6 +21,31 @@ Address::Address(const AddressV6 &addr):
     v4(),
     v6(addr)
 {}
+
+Address Address::operator=(const AddressV4 &addr) {
+    v4 = addr;
+    v6 = AddressV6();
+
+    type_ = addrType::ipv4;
+    return *this;
+}
+
+Address Address::operator=(const AddressV6 &addr) {
+    v4 = AddressV4();
+    v6 = addr;
+
+    type_ = addrType::ipv6;
+    return *this;
+}
+
+Address Address::operator=(const Address &other) {
+    if(other.type_ == addrType::ipv4)
+        *this = other.toV4();
+    else
+        *this = other.toV6();
+    
+    return *this;
+}
 
 Address::~Address() {}
 
@@ -47,9 +74,9 @@ bool operator==(const Address &a, const Address &b) {
     if(a.type_ != b.type_)
         return false;
     if(a.type_ == Address::addrType::ipv4)
-        a.v4 == b.v4;
+        return a.v4 == b.v4;
     else
-        a.v6 == b.v6;
+        return a.v6 == b.v6;
 }
 
 bool operator!=(const Address &a, const Address &b) {

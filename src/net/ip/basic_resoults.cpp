@@ -15,20 +15,6 @@ BasicResoults<Proto>::BasicResoults(const BasicResoults &other) :
 {}
 
 template<typename Proto>
-typename BasicResoults<Proto>::iterator
-    BasicResoults<Proto>::begin() 
-{
-    return this->data_.begin();
-}
-
-template<typename Proto>
-typename BasicResoults<Proto>::iterator
-    BasicResoults<Proto>::end() 
-{
-    return this->data_.end();
-}
-
-template<typename Proto>
 bool operator==(const BasicResoults<Proto> &a,
     const BasicResoults<Proto> &b)
 {

@@ -26,6 +26,13 @@ class Address {
         Address(const AddressV4 &addr);
         Address(const AddressV6 &addr);
 
+        // Assign from ipv4 and ipv6 address
+        Address operator=(const AddressV4 &addr);
+        Address operator=(const AddressV6 &addr);
+
+        // Assign from other Address
+        Address operator=(const Address &other);
+
         ~Address();
 
         AddressV4 toV4() const;
