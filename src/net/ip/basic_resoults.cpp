@@ -34,7 +34,7 @@ BasicResoults<Proto> BasicResoults<Proto>::create(addrinfo_type *addr)
     BasicResoults<Proto> end;
     while (addr) {
         endpoint point;
-        memcpy(point.getData(), addr->ai_addr, addr->ai_addrlen);
+        ::memcpy(point.getData(), addr->ai_addr, addr->ai_addrlen);
 
         end.data_.push_back(point);
         addr = addr->ai_next;
@@ -45,6 +45,7 @@ BasicResoults<Proto> BasicResoults<Proto>::create(addrinfo_type *addr)
 }
 
 template class BasicResoults<tcp>;
+
 bool operator==(const BasicResoults<tcp> &a,
     const BasicResoults<tcp> &b);
 bool operator!=(const BasicResoults<tcp> &a,

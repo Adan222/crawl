@@ -12,6 +12,7 @@ namespace net {
 
 typedef int socketType;
 typedef unsigned short portType;
+typedef int addressFamily;
 
 typedef in_addr in4_addr_type;
 typedef in6_addr in6_addr_type;

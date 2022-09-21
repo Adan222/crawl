@@ -31,12 +31,10 @@ class BasicEndpoint {
         
         ~BasicEndpoint();
 
-        void setAddress(const ip::Address &addr);
-        void setPort(const portType port);
-
         ip::Address getAddress() const;
         portType getPort() const;
         sockaddr_type* getData();
+        const sockaddr_type* getData() const;
         protoType getProtocol() const;
 
         bool isV4() const;

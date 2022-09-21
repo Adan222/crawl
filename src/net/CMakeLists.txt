@@ -8,6 +8,12 @@ set(NET_SRC
     net/base/basic_endpoint.hpp
     net/base/basic_endpoint.cpp
     net/base/error.hpp
+    net/base/connection.hpp
+    net/base/connection.cpp
+    net/base/functions.hpp
+    net/base/functions.cpp
+    net/base/stream_socket.hpp
+    net/base/stream_socket.cpp
 
     #ip
     net/ip/address.hpp

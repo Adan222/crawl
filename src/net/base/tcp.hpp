@@ -12,9 +12,9 @@ namespace net {
 
 class tcp {
     public:
-        typedef BasicSocket<tcp> socket;
-        typedef BasicEndpoint<tcp> endpoint;
-        typedef ip::BasicResolver<tcp> resolver;
+        using socket = BasicSocket<tcp>;
+        using endpoint = BasicEndpoint<tcp>;
+        using resolver = ip::BasicResolver<tcp>;
 
         static tcp v4() noexcept;
         static tcp v6() noexcept;

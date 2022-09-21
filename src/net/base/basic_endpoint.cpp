@@ -33,21 +33,6 @@ template<typename Proto>
 BasicEndpoint<Proto>::~BasicEndpoint() {}
 
 template<typename Proto>
-void BasicEndpoint<Proto>::setAddress(const ip::Address &addr) {
-    // that`s cleaver
-    BasicEndpoint tmp(addr, getPort());
-    data_ = tmp.data_;
-}
-
-template<typename Proto>
-void BasicEndpoint<Proto>::setPort(const portType port) {
-    if(isV4())
-        data_.v4.sin_port = htons(port);
-    else
-        data_.v6.sin6_port = htons(port);
-}
-
-template<typename Proto>
 ip::Address BasicEndpoint<Proto>::getAddress() const {
     if(isV4())
         return ip::AddressV4(data_.v4.sin_addr.s_addr);
@@ -66,6 +51,11 @@ portType BasicEndpoint<Proto>::getPort() const {
 
 template<typename Proto>
 sockaddr_type* BasicEndpoint<Proto>::getData() {
+    return &data_.base;
+}
+
+template<typename Proto>
+const sockaddr_type* BasicEndpoint<Proto>::getData() const {
     return &data_.base;
 }
 

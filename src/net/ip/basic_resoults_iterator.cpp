@@ -54,17 +54,32 @@ const BasicEndpoint<Proto>*
 }
 
 template<typename Proto>
-typename BasicResoultsIterator<Proto>::iterator
-    BasicResoultsIterator<Proto>::begin() 
+typename BasicResoultsIterator<Proto>::const_iterator
+    BasicResoultsIterator<Proto>::begin() const
 {
     return this->data_.begin();
 }
 
 template<typename Proto>
-typename BasicResoultsIterator<Proto>::iterator
-    BasicResoultsIterator<Proto>::end() 
+typename BasicResoultsIterator<Proto>::const_iterator
+    BasicResoultsIterator<Proto>::end() const
 {
     return this->data_.end();
+}
+
+template<typename Proto>
+typename BasicResoultsIterator<Proto>::const_iterator
+    BasicResoultsIterator<Proto>::cbegin() const 
+{
+    return this->data_.cbegin();
+}
+
+
+template<typename Proto>
+typename BasicResoultsIterator<Proto>::const_iterator
+    BasicResoultsIterator<Proto>::cend() const 
+{
+    return this->data_.cend();
 }
 
 

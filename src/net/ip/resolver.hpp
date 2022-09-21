@@ -20,12 +20,12 @@ class BasicResolver {
         typedef Proto protoType;
         typedef typename Proto::endpoint endpoint;
         typedef BasicQuery<Proto> query;
-        typedef BasicResoults<Proto> resoultsType;
+        using resoults = BasicResoults<Proto>;
 
         BasicResolver();
         ~BasicResolver();
 
-        resoultsType resolve(const query &q);
+        resoults resolve(const query &q);
 };
 
 } // namespace net::ip

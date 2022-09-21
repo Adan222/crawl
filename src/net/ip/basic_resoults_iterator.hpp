@@ -28,6 +28,7 @@ class BasicResoultsIterator {
         using endpoint = BasicEndpoint<Proto>;
         using vectorType = std::vector<endpoint>;
         using iterator = typename vectorType::iterator;
+        using const_iterator = typename vectorType::const_iterator;
 
         // Default constructor and destructor
         BasicResoultsIterator();
@@ -42,8 +43,12 @@ class BasicResoultsIterator {
         const endpoint& operator*() const;
         const endpoint* operator->() const;
 
-        iterator begin();
-        iterator end();
+        const_iterator begin() const;
+        const_iterator end() const;
+
+        const_iterator cbegin() const;
+        const_iterator cend() const;
+
 
         friend bool operator==<>
             (const BasicResoultsIterator &a, 
