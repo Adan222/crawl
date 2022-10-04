@@ -1,11 +1,14 @@
 #ifndef NET_BASE_CONNECTION_HPP_
 #define NET_BASE_CONNECTION_HPP_
 
+#include <cstddef>
 #include <iostream>
 
+#include "base/buffer/mutable_buffer.hpp"
 #include "net/base/stream_socket.hpp"
 #include "net/base/tcp.hpp"
 #include "net/ip/resolver.hpp"
+#include "base/buffer/const_buffer.hpp"
 
 namespace net {
 
@@ -18,7 +21,6 @@ namespace net {
 class Connection {
     public:
         using endpoint = tcp::endpoint;
-        using Buffer = void*;
 
         // Default constructor and destructor
         Connection();
@@ -34,11 +36,13 @@ class Connection {
         // close connection
         void close();
 
-        // TODO: Make special class for data storage
-        // Instead of void* here, there will be special
-        // class called Buffer.
-        size_t send(Buffer data);
-        size_t recv(Buffer data);
+        // Send data through connection.
+        // Data are stored in ConstBuffer 
+        size_t send(const utils::ConstBuffer &data);
+
+        // Recive data from connection and return const buffer.
+        // As argument, get how much data store in buff 
+        size_t recv(utils::MutableBuffer &buff);
 
     private:
         bool tryConnect(const endpoint &end);

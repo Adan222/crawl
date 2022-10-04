@@ -32,7 +32,7 @@ int connect(int sockfd, const struct sockaddr *addr,
 }
 
 size_t recv(int sockfd, void *buf, size_t len, int flags, net::error_code &e) {
-    size_t ret = ::recv(sockfd, buf, len, flags);    
+    const auto ret = ::recv(sockfd, buf, len, flags);    
     error::getLastError(e);
 
     return ret;

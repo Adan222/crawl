@@ -8,7 +8,8 @@ void throwError(const std::error_code &ec) {
     throwException(err);
 }
 
-void throwException(const std::exception &e) {
+template<typename Exception>
+void throwException(const Exception &e) {
     throw e;
 }
 

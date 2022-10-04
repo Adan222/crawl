@@ -7,7 +7,10 @@
 namespace error {
 
 void throwError(const std::error_code &ec);
-void throwException(const std::exception &e);
+
+// shouldn`t be static?
+template<typename Exception>
+void throwException(const Exception &e);
 void getLastError(std::error_code &ec);
 
 } // namespace error

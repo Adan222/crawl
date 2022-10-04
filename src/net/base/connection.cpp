@@ -1,7 +1,10 @@
 #include "net/base/connection.hpp"
-#include "net/base/net_types.hpp"
+#include "base/buffer/const_buffer.hpp"
+#include "base/buffer/mutable_buffer.hpp"
+#include <cstddef>
 
 namespace net {
+    
 Connection::Connection() :
     socket_()
 {}
@@ -39,12 +42,19 @@ void Connection::close() {
     socket_.close();
 }
 
-size_t Connection::send(Buffer data) {
-    return socket_.send(data, 0);
+size_t Connection::send(const utils::ConstBuffer &data) {
+    return socket_.send(data.data(), data.size());
 }
 
-size_t Connection::recv(Buffer data) {
-    return socket_.recv(data, 0);
+size_t Connection::recv(utils::MutableBuffer &buff) {
+    constexpr int BUFF_SIZE = 128;
+    char data[BUFF_SIZE];
+    size_t len = socket_.recv(data, BUFF_SIZE);
+
+    // TODO: construct buffer from char array
+    buff = std::string(data);
+
+    return len;
 }
 
 bool Connection::tryConnect(const endpoint &end) 
@@ -73,6 +83,5 @@ bool Connection::tryConnect(const endpoint &end)
     }
     return true;
 }
-
 
 } // namespace net
