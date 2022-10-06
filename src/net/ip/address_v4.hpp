@@ -18,24 +18,48 @@ class AddressV4;
 bool operator==(const AddressV4 &a, const AddressV4 &b);
 bool operator!=(const AddressV4 &a, const AddressV4 &b);
 
-// This class represent ipv4 address
+/**
+ * This class represent address in version 4
+ */
 class AddressV4 {
     public:
         using v4Type = std::uint32_t;
         using v4ByteType = std::array<std::uint8_t, 4>;
 
-        /* Create empty address */
+        /**
+         * Default constructor
+         * Create empty address
+         */
         AddressV4();
 
-        /* Create address from raw int and bytes */
+        /**
+         * Create address primitive tpyes
+         */
         AddressV4(const v4Type addr);
         AddressV4(const v4ByteType &bytes);
+        // Shouldn`t we provide this constructor?
+        //AddressV4(const uint8_t bytes[4]);
 
+        /**
+         * Destructor
+         */
         ~AddressV4();
-
+        
+        /**
+         * Convert address to string
+         * @return address as string
+         */
         std::string toString() const;
+
+        /**
+         * Convert address to 32 bit unsigned integer
+         * @return addr_.s_addr which is just uint32_t  
+         */
         v4Type toInt() const;
 
+        /*
+         * Comapre two addresses
+         */
         friend bool operator==(const AddressV4 &a, const AddressV4 &b);
         friend bool operator!=(const AddressV4 &a, const AddressV4 &b);
 
@@ -44,7 +68,10 @@ class AddressV4 {
 };
 
 namespace V4 {
-
+    /**
+     * Create AddressV4 from string
+     * @return AddressV4 object
+     */
     AddressV4 fromString(const std::string &str);
     AddressV4 fromString(const char *str);
 
