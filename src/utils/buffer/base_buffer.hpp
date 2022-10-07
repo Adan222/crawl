@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <type_traits>
 
-#include "base/buffer/concept.hpp"
+#include "utils/buffer/concept.hpp"
 
 // NOTE: I know that we use convention
 // one .hpp and .cpp file, but as this

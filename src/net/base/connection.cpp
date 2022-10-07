@@ -1,7 +1,4 @@
 #include "net/base/connection.hpp"
-#include "base/buffer/const_buffer.hpp"
-#include "base/buffer/mutable_buffer.hpp"
-#include <cstddef>
 
 namespace net {
     

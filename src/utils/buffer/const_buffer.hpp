@@ -1,7 +1,7 @@
 #pragma once
 
-#include "base/buffer/base_buffer.hpp"
-#include "base/buffer/concept.hpp"
+#include "utils/buffer/base_buffer.hpp"
+#include "utils/buffer/concept.hpp"
 #include <cstddef>
 
 namespace utils {

@@ -4,11 +4,11 @@
 #include <cstddef>
 #include <iostream>
 
-#include "base/buffer/mutable_buffer.hpp"
 #include "net/base/stream_socket.hpp"
 #include "net/base/tcp.hpp"
 #include "net/ip/resolver.hpp"
-#include "base/buffer/const_buffer.hpp"
+#include "utils/buffer/mutable_buffer.hpp"
+#include "utils/buffer/const_buffer.hpp"
 
 namespace net {
 

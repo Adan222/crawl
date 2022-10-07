@@ -5,11 +5,10 @@
 #include <system_error>
 #include <thread>
 
-#include "base/buffer/mutable_buffer.hpp"
+#include "utils/buffer/mutable_buffer.hpp"
 #include "net/base/connection.hpp"
 #include "net/base/tcp.hpp"
-#include "base/buffer/concept.hpp"
-#include "buffer/const_buffer.hpp"
+#include "utils/buffer/const_buffer.hpp"
 
 int main () try {
     net::tcp::resolver res;
