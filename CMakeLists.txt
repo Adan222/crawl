@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.24)
 
 project(crawl VERSION 0.0.0)
 
+set(CMAKE_TLS_VERIFY ON)
+
 # C++ standard
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
