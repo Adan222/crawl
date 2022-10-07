@@ -18,10 +18,12 @@
 # All subdirectory here:
 add_subdirectory(base)
 add_subdirectory(net)
+add_subdirectory(utils)
 
 add_executable(${PROJECT_NAME}
     ${CRAWL_SRC}
-    ${NET_SRC}
+    ${CRAWL_NET_SRC}
+    ${CRAWL_UTILS_SRC}
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
 

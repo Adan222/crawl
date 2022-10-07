@@ -1,5 +1,4 @@
 set(CRAWL_SRC
-
     # base/
     base/main.cpp
     base/config.hpp

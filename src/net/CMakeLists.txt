@@ -1,4 +1,4 @@
-set(NET_SRC
+set(CRAWL_NET_SRC
     # base
     net/base/basic_socket.hpp
     net/base/basic_socket.cpp
