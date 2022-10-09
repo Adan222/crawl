@@ -35,6 +35,8 @@ class BasicSocket {
         socketType getFileDescriptor() const;
 
     protected:
+        constexpr static socketType kEmptySocket = -1;
+
         socketType fd_;
 };
 

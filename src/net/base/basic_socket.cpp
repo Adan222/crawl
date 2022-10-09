@@ -4,19 +4,21 @@
 namespace net {
 
 template<class Proto>
-BasicSocket<Proto>::BasicSocket() {}
+BasicSocket<Proto>::BasicSocket() :
+    fd_(kEmptySocket)
+{}
 
 template<class Proto>
 BasicSocket<Proto>::BasicSocket(BasicSocket &&other) :
     fd_(std::move(other.fd_))
 {
-    other.fd_ = -1;
+    other.fd_ = kEmptySocket;
 }
 
 template<class Proto>
 BasicSocket<Proto>& BasicSocket<Proto>::operator=(BasicSocket<Proto> &&other) {
     fd_ = other.fd_;
-    other.fd_ = -1;
+    other.fd_ = kEmptySocket;
     return *this;
 }
 

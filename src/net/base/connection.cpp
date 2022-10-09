@@ -1,4 +1,8 @@
 #include "net/base/connection.hpp"
+#include "net/base/basic_socket.hpp"
+#include "net/base/stream_socket.hpp"
+#include "net/base/tcp.hpp"
+#include <utility>
 
 namespace net {
     
@@ -18,14 +22,14 @@ Connection::Connection(Connection &&other) {
     socket_ = std::move(other.socket_);
 
     /* Zero other socket so we couldn`t use it */
-    //other.socket_ = 0;
+    other.socket_ = std::move(StreamSocket());
 }
 
 Connection& Connection::operator=(Connection &&other) {
     socket_ = std::move(other.socket_);
 
     /* Zero other socket so we couldn`t use it */
-    //other.socket_ = 0;
+    other.socket_ = std::move(StreamSocket());
 
     return *this;
 }
