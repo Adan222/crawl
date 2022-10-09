@@ -6,4 +6,7 @@ set(CRAWL_UTILS_SRC
     buffer/mutable_buffer.hpp
     
     # logger/
+    logger/logger.hpp
+    logger/logger.cpp
+    logger/log.hpp
 )

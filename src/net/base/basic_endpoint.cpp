@@ -1,10 +1,13 @@
 #include "net/base/basic_endpoint.hpp"
 #include "net/base/tcp.hpp"
+#include <cstring>
 
 namespace net {
 
 template<typename Proto>
-BasicEndpoint<Proto>::BasicEndpoint() {}
+BasicEndpoint<Proto>::BasicEndpoint() {
+    memset(&data_, 0, sizeof(sockTypeData));
+}
 
 template<typename Proto>
 BasicEndpoint<Proto>::BasicEndpoint(
@@ -75,6 +78,12 @@ bool BasicEndpoint<Proto>::isV4() const {
 template<typename Proto>
 bool BasicEndpoint<Proto>::isV6() const {
     return data_.base.sa_family == AF_INET6;
+}
+
+template<typename Proto>
+bool BasicEndpoint<Proto>::isEmpty() const {
+    // idk it`s right way to check it
+    return data_.base.sa_family == 0;
 }
 
 template<typename Proto>

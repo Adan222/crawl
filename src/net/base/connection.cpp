@@ -22,7 +22,6 @@ typename Connection::endpoint
             i.getAddress().toString() << "\n";
 
         if(tryConnect(i)) {
-            // TODO: Make logger
             std::cout << "== Connected to " <<
                 i.getAddress().toString() << "\n";
             return i;
@@ -32,6 +31,7 @@ typename Connection::endpoint
                 i.getAddress().toString() << "\n";
         }
     }
+    // TODO: throw error here
     return endpoint(); 
 }
 

@@ -40,6 +40,8 @@ class BasicEndpoint {
         bool isV4() const;
         bool isV6() const;
 
+        bool isEmpty() const;
+
         friend bool operator==<>
             (const BasicEndpoint &a, const BasicEndpoint &b);
         friend bool operator!=<>
