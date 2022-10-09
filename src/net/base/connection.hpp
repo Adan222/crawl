@@ -27,18 +27,26 @@ class Connection {
         /* Default constructor and destructor */
         Connection();
 
+        /**
+         * Construct from socket
+         */
+        Connection(StreamSocket &&sock);
+
+        /** 
+         * Delate copying
+         * 
+         * We want only one object of each connection.
+         */
+        Connection(const Connection &other) = delete;
+        Connection& operator=(const Connection &other) = delete;
+
+        /* Moving allowed */
+        Connection(Connection &&other);
+        Connection& operator=(Connection &&other);
+
         /* Close socket and connection on destruction */
         ~Connection();
         
-        /** 
-          * Try connect to endpoint. 
-          *
-          * If you can`t connect to one,
-          * print error and try another. If can`t 
-          * connect to any endpoint throw exception
-         */
-        endpoint connect(const tcp::resolver::resoults &res);
-
         /* Close connection */
         void close();
 
@@ -58,8 +66,6 @@ class Connection {
         size_t recv(utils::MutableBuffer &buff);
 
     private:
-        bool tryConnect(const endpoint &end);
-
         StreamSocket socket_;
 };
 

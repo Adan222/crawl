@@ -2,10 +2,23 @@
 #include "net/base/tcp.hpp"
 
 namespace net {
-using error::throwError;
 
 template<class Proto>
 BasicSocket<Proto>::BasicSocket() {}
+
+template<class Proto>
+BasicSocket<Proto>::BasicSocket(BasicSocket &&other) :
+    fd_(std::move(other.fd_))
+{
+    other.fd_ = -1;
+}
+
+template<class Proto>
+BasicSocket<Proto>& BasicSocket<Proto>::operator=(BasicSocket<Proto> &&other) {
+    fd_ = other.fd_;
+    other.fd_ = -1;
+    return *this;
+}
 
 template<class Proto>
 BasicSocket<Proto>::~BasicSocket() {
@@ -20,7 +33,7 @@ void BasicSocket<Proto>::open(const endpoint &end) {
         0,
         ec);
     if(fd_ == -1)
-      throwError(ec);
+        error::throwError(ec);
 }
 
 template<class Proto>

@@ -6,33 +6,28 @@ Connection::Connection() :
     socket_()
 {}
 
+Connection::Connection(StreamSocket &&sock) :
+    socket_(std::move(sock))
+{}
+
 Connection::~Connection() {
     close();
 }
 
-typename Connection::endpoint 
-    Connection::connect(const tcp::resolver::resoults &res) 
-{
-    // Create socket and try each endpoint to connect,
-    // then print message.
-    for(const auto &i : res) {
-        socket_.open(i);
+Connection::Connection(Connection &&other) {
+    socket_ = std::move(other.socket_);
 
-        std::cout << "= Trying connect to " <<
-            i.getAddress().toString() << "\n";
+    /* Zero other socket so we couldn`t use it */
+    //other.socket_ = 0;
+}
 
-        if(tryConnect(i)) {
-            std::cout << "== Connected to " <<
-                i.getAddress().toString() << "\n";
-            return i;
-        }
-        else {
-            std::cout << "== Can`t connect to " <<
-                i.getAddress().toString() << "\n";
-        }
-    }
-    // TODO: throw error here
-    return endpoint(); 
+Connection& Connection::operator=(Connection &&other) {
+    socket_ = std::move(other.socket_);
+
+    /* Zero other socket so we couldn`t use it */
+    //other.socket_ = 0;
+
+    return *this;
 }
 
 void Connection::close() {
@@ -52,33 +47,6 @@ size_t Connection::recv(utils::MutableBuffer &buff) {
     buff = std::string(data);
 
     return len;
-}
-
-bool Connection::tryConnect(const endpoint &end) 
-{
-    error_code ec;
-
-    // len of sockaddr required to connect
-    int len = end.isV4() ? 
-        sizeof(sockaddr_v4_type) : sizeof(sockaddr_v6_type);
-
-    try {
-        // return value of connect
-        int ret = func::connect(socket_.getFileDescriptor(), 
-            end.getData(), 
-            len, 
-            ec);
-
-    } catch (const std::exception& e) {
-        // If we catch error then close socket
-        // return false. In connect() function 
-        // we print error that we can`t connect
-        // to, and try another endpoint.
-
-        socket_.close();
-        return false;
-    }
-    return true;
 }
 
 } // namespace net

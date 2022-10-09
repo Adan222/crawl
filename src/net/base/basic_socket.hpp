@@ -21,6 +21,14 @@ class BasicSocket {
         BasicSocket();
         ~BasicSocket();
 
+        /* We dnon`t want copy of socket */
+        BasicSocket(const BasicSocket &other) = delete;
+        BasicSocket& operator=(const BasicSocket &other) = delete;
+
+        /* Allow move */
+        BasicSocket(BasicSocket &&other);
+        BasicSocket& operator=(BasicSocket &&other);
+
         void open(const endpoint &end);
         void close();
 

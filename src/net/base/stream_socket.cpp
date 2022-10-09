@@ -1,9 +1,20 @@
 #include "net/base/stream_socket.hpp"
+#include "net/base/basic_socket.hpp"
+#include <utility>
 
 namespace net {
 StreamSocket::StreamSocket() :
     BasicSocket<tcp>()
 {}
+
+StreamSocket::StreamSocket(StreamSocket &&other) :
+    BasicSocket(std::move(other))
+{}
+
+StreamSocket& StreamSocket::operator=(StreamSocket &&other) {
+    BasicSocket::operator=(std::move(other));
+    return *this;
+}
 
 StreamSocket::~StreamSocket() {}
 
