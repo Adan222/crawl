@@ -4,6 +4,7 @@
 #include <cstddef>
 
 #include "net/base/basic_socket.hpp"
+#include "net/base/net_types.hpp"
 #include "net/base/tcp.hpp"
 #include "base/error.hpp"
 #include "net/base/error.hpp"
@@ -17,6 +18,11 @@ class StreamSocket :
     public:
         StreamSocket();
         ~StreamSocket();
+        
+        /**
+         * Create socket from endpoint
+         */
+        StreamSocket(const tcp::endpoint &end);
 
         /* We dnon`t want copy of socket */
         StreamSocket(const StreamSocket &other) = delete;
@@ -28,8 +34,16 @@ class StreamSocket :
 
         size_t send(const void *data, size_t len);
         size_t recv(void *data, size_t len);
+
+        /* I don`t know if it`s good practise */
+        bool operator==(const socketState state) const;
+
+        friend bool operator==(const StreamSocket &a, const StreamSocket &b);
+        friend bool operator!=(const StreamSocket &a, const StreamSocket &b);
+
+        constexpr static StreamSocket closedSocket();
 };
 
 } // namespace net
 
-#endif // NET_BASE_STREAM_SOCKET_HPP_
+#endif // NET_BASE_STREAM_SOCKET_HPP_BasicSocket::k

@@ -20,6 +20,7 @@ typedef sockaddr sockaddr_type;
 typedef sockaddr_in sockaddr_v4_type;
 typedef sockaddr_in6 sockaddr_v6_type;
 typedef addrinfo addrinfo_type;
+typedef socklen_t socklen_type;
 
 } // namespace net
 

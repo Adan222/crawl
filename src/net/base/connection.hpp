@@ -65,8 +65,17 @@ class Connection {
          */
         size_t recv(utils::MutableBuffer &buff);
 
+        /**
+         * Check if connection is opened
+         *
+         * If socket is opened and is valid, then connection
+         * is also opened.
+         */
+        bool isOpen() const;
+
     private:
         StreamSocket socket_;
+        endpoint end_; 
 };
 
 } // namespace net

@@ -14,6 +14,8 @@ set(CRAWL_NET_SRC
     net/base/functions.cpp
     net/base/stream_socket.hpp
     net/base/stream_socket.cpp
+    net/base/connect.hpp
+    net/base/connect.cpp
 
     #ip
     net/ip/address.hpp

@@ -12,16 +12,48 @@
 
 namespace net {
 
+/* 
+ * Wikipedia said:
+ *     "File descriptors typically have non-negative integer values, 
+ *     with negative values being reserved to indicate "no value" 
+ *     or error conditions."
+ *
+ * So we can do assume that values bellow -1 are free to use.
+*/
+enum socketState {
+    kError = -1,
+    kNotOpen = -2,
+    kOpened = -3,
+    kClosed = -4,
+    kMoved = -5
+};
+
+/**
+ * Base class for any type of sockets
+ */
 template<class Proto>
 class BasicSocket {
     public:
         using protoType = Proto;
         using endpoint = typename protoType::endpoint;
 
+        /**
+         * Default constructor
+         *
+         * Create empty socket, but do we need
+         * empty socket?
+         */
         BasicSocket();
+
+        /**
+         * Create socket which will fit with endpoint
+         *
+         * @param end based on this endpoint we want to create socket
+         */
+        BasicSocket(const endpoint &end);
         ~BasicSocket();
 
-        /* We dnon`t want copy of socket */
+        /* We don`t want copy of socket */
         BasicSocket(const BasicSocket &other) = delete;
         BasicSocket& operator=(const BasicSocket &other) = delete;
 
@@ -29,14 +61,22 @@ class BasicSocket {
         BasicSocket(BasicSocket &&other);
         BasicSocket& operator=(BasicSocket &&other);
 
-        void open(const endpoint &end);
+        /**
+         * Check state
+         *
+         * I don`t know if it`s good practice.
+         *
+         * @param state state of the socket
+         * @return if socket state is equal with given state. 
+         */
+        bool operator==(const socketState state) const;
+
+        /* close file descriptor */
         void close();
 
         socketType getFileDescriptor() const;
 
     protected:
-        constexpr static socketType kEmptySocket = -1;
-
         socketType fd_;
 };
 

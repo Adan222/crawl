@@ -1,8 +1,5 @@
 #include "net/base/connection.hpp"
 #include "net/base/basic_socket.hpp"
-#include "net/base/stream_socket.hpp"
-#include "net/base/tcp.hpp"
-#include <utility>
 
 namespace net {
     
@@ -51,6 +48,10 @@ size_t Connection::recv(utils::MutableBuffer &buff) {
     buff = std::string(data);
 
     return len;
+}
+
+bool Connection::isOpen() const {
+    return socket_ == socketState::kOpened;
 }
 
 } // namespace net
