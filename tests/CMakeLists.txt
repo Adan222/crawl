@@ -4,6 +4,10 @@ project(crawl_test)
 message(STATUS "Looking for: Catch2")
 find_package(Catch2 QUIET)
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
 # If we didn`t found Catch2, download 
 # it from github
 if(NOT Catch2_FOUND)

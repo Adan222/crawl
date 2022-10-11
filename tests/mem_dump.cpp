@@ -28,7 +28,7 @@ inline static void printGap(int x) {
         std::cout << "   ";
 }
 
-void hexDump(const void *data, const std::size_t size) {
+void hexDump(void *data, std::size_t size) {
     constexpr int kChunkSize = 16;
 
     using byteType = char;
