@@ -34,6 +34,8 @@ add_subdirectory(net)
 
 set(CRAWL_TEST_SRC
     main.cpp
+    mem_dump.hpp
+    mem_dump.cpp
 )
 
 add_executable(crawl_test
