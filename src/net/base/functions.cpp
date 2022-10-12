@@ -1,7 +1,4 @@
 #include "net/base/functions.hpp"
-#include "base/error.hpp"
-#include <cstddef>
-#include <sys/socket.h>
 
 namespace net::func {
 

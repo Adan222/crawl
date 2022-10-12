@@ -20,12 +20,18 @@ add_subdirectory(base)
 add_subdirectory(net)
 add_subdirectory(utils)
 
-add_executable(${PROJECT_NAME}
-    ${CRAWL_SRC}
+add_library(crawl_src STATIC 
+    ${CRAWL_BASE_SRC}
     ${CRAWL_NET_SRC}
     ${CRAWL_UTILS_SRC}
 )
+target_include_directories(crawl_src PUBLIC ${CMAKE_SOURCE_DIR}/src)
+
+add_executable(${PROJECT_NAME}
+    ${CRAWL_MAIN_CPP}
+)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(crawl PUBLIC crawl_src)
 
 # crypto++
 #target_link_libraries(${PROJECT_NAME} PUBLIC cryptopp)

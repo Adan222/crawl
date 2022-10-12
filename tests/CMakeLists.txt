@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.24)
-project(crawl_test)
-
 message(STATUS "Looking for: Catch2")
 find_package(Catch2 QUIET)
 
@@ -40,12 +37,16 @@ set(CRAWL_TEST_SRC
     main.cpp
     mem_dump.hpp
     mem_dump.cpp
-)
 
-add_executable(crawl_test
-    ${CRAWL_TEST_SRC}
     ${CRAWL_TEST_NET_SRC}
 )
 
+add_executable(crawl_test ${CRAWL_TEST_SRC})
+
+# main src
+target_include_directories(crawl_test PUBLIC ${CMAKE_SOURCE_DIR}/src)
+target_link_libraries(crawl_test PUBLIC crawl_src)
+
+# catch2
 target_link_libraries(crawl_test PUBLIC Catch2::Catch2)
 target_include_directories(crawl_test PUBLIC Catch2::Catch2)
