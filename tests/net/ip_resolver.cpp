@@ -1,4 +1,5 @@
 #include "ip_resolver.hpp"
+#include "tests/net/test.hpp"
 
 namespace test {
 
@@ -27,7 +28,7 @@ void dumpEndpoint(const net::tcp::endpoint &end) {
 
 TEST_CASE("TCP resolver test", "[resolver]") {
     net::tcp::resolver res;
-    net::tcp::resolver::query q("www.google.com", "http");
+    net::tcp::resolver::query q(test::host, test::port);
 
     for(const auto &i : res.resolve(q)) {
         dumpEndpoint(i);

@@ -6,6 +6,7 @@
 
 #include "net/base/net_types.hpp"
 #include "net/base/tcp.hpp"
+#include "test.hpp"
 
 namespace test {
     bool isValidFamily(const int af);
