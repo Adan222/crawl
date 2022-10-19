@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "catch2/catch_test_macros.hpp"
+#include <catch2/catch_test_macros.hpp>
 
 #include "net/base/net_types.hpp"
 #include "net/base/tcp.hpp"

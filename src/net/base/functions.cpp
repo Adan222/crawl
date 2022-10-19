@@ -17,9 +17,9 @@ size_t send(int sockfd, const void *buf, size_t len, int flags, net::error_code 
 }
 
 int connect(int sockfd, const struct sockaddr *addr,
-     socklen_t addrlen, net::error_code &e) 
+    socklen_t addrlen, net::error_code &e) 
 {
-    int ret = connect(sockfd, addr, addrlen);
+    int ret = ::connect(sockfd, addr, addrlen);
     error::getLastError(e);
 
     if(ret == -1)

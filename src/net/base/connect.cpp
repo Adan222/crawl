@@ -1,6 +1,4 @@
 #include "net/base/connect.hpp"
-#include "net/base/connection.hpp"
-#include <memory>
 
 namespace net {
 
@@ -8,7 +6,7 @@ int connSocket
     (const StreamSocket &sock, const tcp::endpoint &end)
 {
     net::error_code ec;
-    const socklen_type len = end.isV4() ? 
+    socklen_type len = end.isV4() ? 
         sizeof(sockaddr_v4_type) : sizeof(sockaddr_v6_type);
 
     return func::connect(sock.getFileDescriptor(),

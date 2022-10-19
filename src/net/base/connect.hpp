@@ -21,7 +21,6 @@ namespace net {
 int connSocket
     (const StreamSocket &sock, const tcp::endpoint &end);
 
-
 /**
  * Create connection using endpoint
  *
