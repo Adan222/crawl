@@ -43,6 +43,8 @@ class BasicResoultsIterator {
         const endpoint& operator*() const;
         const endpoint* operator->() const;
 
+        endpoint operator[](int i) const;
+
         const_iterator begin() const;
         const_iterator end() const;
 

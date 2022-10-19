@@ -54,6 +54,11 @@ const BasicEndpoint<Proto>*
 }
 
 template<typename Proto>
+BasicEndpoint<Proto> BasicResoultsIterator<Proto>::operator[](int i) const {
+    return data_.at(i);
+}
+
+template<typename Proto>
 typename BasicResoultsIterator<Proto>::const_iterator
     BasicResoultsIterator<Proto>::begin() const
 {
