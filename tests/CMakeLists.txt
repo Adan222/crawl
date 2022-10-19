@@ -37,11 +37,12 @@ set(CRAWL_TEST_SRC
     main.cpp
     mem_dump.hpp
     mem_dump.cpp
-
-    ${CRAWL_TEST_NET_SRC}
 )
 
-add_executable(crawl_test ${CRAWL_TEST_SRC})
+add_executable(crawl_test
+    ${CRAWL_TEST_SRC}
+    ${CRAWL_TEST_NET_SRC}
+)
 
 # main src
 target_include_directories(crawl_test PUBLIC ${CMAKE_SOURCE_DIR}/src)

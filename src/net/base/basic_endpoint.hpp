@@ -34,6 +34,7 @@ class BasicEndpoint {
         ip::Address getAddress() const;
         portType getPort() const;
         sockaddr_type* getData();
+        int getAddressFamily() const;
         const sockaddr_type* getData() const;
         protoType getProtocol() const;
 

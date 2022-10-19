@@ -63,6 +63,11 @@ const sockaddr_type* BasicEndpoint<Proto>::getData() const {
 }
 
 template<typename Proto>
+int BasicEndpoint<Proto>::getAddressFamily() const {
+    return data_.base.sa_family;
+}
+
+template<typename Proto>
 Proto BasicEndpoint<Proto>::getProtocol() const {
     if(isV4())
         return Proto::v4();
