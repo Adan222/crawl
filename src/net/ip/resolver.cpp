@@ -14,9 +14,10 @@ BasicResoults<Proto> BasicResolver<Proto>::resolve(const query &q)  {
     addrinfo_type *res;
     net::error_code ec;
 
-    func::getaddrinfo(q.getHostName().c_str(), q.getServiceName().c_str(),
+    func::getaddrinfo(q.getHostName().c_str(), q.getServiceName(),
         &q.getHint(), 
-        &res, ec);
+        &res, 
+        ec);
     
     if(ec)
         error::throwError(ec);

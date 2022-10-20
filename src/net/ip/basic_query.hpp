@@ -16,17 +16,34 @@ class BasicQuery {
         typedef Proto ProtoType;
         typedef typename Proto::endpoint endpoint;
 
+        /* Create empty query */
         BasicQuery();
+
+        /* Create query only from hostname */
+        BasicQuery(const std::string &host);
+
+        /* Create query with hostname and port */
         BasicQuery(const std::string &host,
             const std::string &service);
+        BasicQuery(const std::string &host, portType port);
 
         ~BasicQuery();
 
         const addrinfo_type& getHint() const;
         std::string getHostName() const;
-        std::string getServiceName() const;
+
+        /**
+         * Get service name
+         *
+         * @return service name, or nullptr if serviceName_ is empty
+         *
+         * NOTE: Does it matter if we return nullptr or empty string?
+         */
+        const char* getServiceName() const;
 
     private:
+        void createEmptyHint();
+
         addrinfo_type hint_;
         std::string hostName_;
         std::string serviceName_;
