@@ -18,20 +18,28 @@ class Address;
 bool operator==(const Address &a, const Address &b);
 bool operator!=(const Address &a, const Address &b);
 
-// This class represent both address type so we
-// can use only one class in connections etc.
+/**
+ * This class represent both address type
+ */
 class Address {
     public:
+        /* Create empty address */
         Address();
+
+        /**
+         * Create address from any kind of address
+         */
         Address(const AddressV4 &addr);
         Address(const AddressV6 &addr);
 
-        // Assign from ipv4 and ipv6 address
+        // TODO: copy and move constructor
+
+        /**
+         * Assign from any kind of address
+         */
+        Address operator=(const Address &other);
         Address operator=(const AddressV4 &addr);
         Address operator=(const AddressV6 &addr);
-
-        // Assign from other Address
-        Address operator=(const Address &other);
 
         ~Address();
 

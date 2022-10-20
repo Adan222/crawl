@@ -7,6 +7,9 @@
 
 namespace net::ip {
 
+/**
+ * Query type for any address resolving
+ */
 template<typename Proto>
 class BasicQuery {
     public:

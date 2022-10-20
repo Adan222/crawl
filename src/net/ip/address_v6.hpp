@@ -47,10 +47,14 @@ class AddressV6 {
 };
 
 namespace V6 {
+    /**
+     * Create AddressV6 from string
+     *
+     * @return AddressV6 object
+     */
     AddressV6 fromString(const std::string &str);
     AddressV6 fromString(const char *str);
 }
-
 
 } // namespace net::ip
 

@@ -20,9 +20,11 @@ template<typename Proto>
 bool operator!=(const BasicResoults<Proto> &a,
     const BasicResoults<Proto> &b);
 
-// This class represens resoults of address resolving.
-// You can iterate through object of this class and get
-// all resolved endpoints.
+/** This class represens resoults of address resolving.
+ *
+ * You can iterate through object of this class and get
+ * all resolved endpoints.
+ */
 template<typename Proto>
 class BasicResoults : public
     BasicResoultsIterator<Proto>
@@ -31,15 +33,15 @@ class BasicResoults : public
         using endpoint = typename Proto::endpoint;
         using vectorType = std::vector<endpoint>;
 
+        /* Create empty resoults */
         BasicResoults();
         ~BasicResoults();
 
-        // copy constructor
+        /* Copy constructor */
         BasicResoults(const BasicResoults &other);
-
+        
         friend bool operator==<>(const BasicResoults<Proto> &a,
             const BasicResoults<Proto> &b);
-
         friend bool operator!=<>(const BasicResoults<Proto> &a,
             const BasicResoults<Proto> &b);
 

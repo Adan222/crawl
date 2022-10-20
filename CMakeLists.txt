@@ -31,5 +31,4 @@ if(CRAWL_BUILD_TEST)
     add_subdirectory(tests)
 endif()
 
-
 add_subdirectory(src)

@@ -1,10 +1,13 @@
 #include "net/ip/basic_resoults.hpp"
 #include "net/base/tcp.hpp"
+#include "net/ip/basic_resoults_iterator.hpp"
 
 namespace net::ip {
 
 template<typename Proto>
-BasicResoults<Proto>::BasicResoults() {}
+BasicResoults<Proto>::BasicResoults() :
+    BasicResoultsIterator<Proto>()
+{}
 
 template<typename Proto>
 BasicResoults<Proto>::~BasicResoults() {}

@@ -30,21 +30,25 @@ class BasicResoultsIterator {
         using iterator = typename vectorType::iterator;
         using const_iterator = typename vectorType::const_iterator;
 
-        // Default constructor and destructor
+        /* Create empty iterator */
         BasicResoultsIterator();
         ~BasicResoultsIterator();
 
-        // copy constructor
+        /* Copy constructor */
         BasicResoultsIterator(const BasicResoultsIterator &other);
 
         BasicResoultsIterator& operator++();
         BasicResoultsIterator operator++(int);
 
+        /**
+         * Dereference and access operator
+         */
         const endpoint& operator*() const;
         const endpoint* operator->() const;
 
         endpoint operator[](int i) const;
 
+        /* Iterators */
         const_iterator begin() const;
         const_iterator end() const;
 
