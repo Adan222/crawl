@@ -1,4 +1,5 @@
 #include "net/base/functions.hpp"
+#include "utils/error/error.hpp"
 
 namespace net::func {
 
@@ -35,5 +36,17 @@ size_t recv(int sockfd, void *buf, size_t len, int flags, net::error_code &e) {
     return ret;
 }
 
+int getaddrinfo(const char *node, const char *service,
+    const struct addrinfo *hints,
+    struct addrinfo **res,
+    net::error_code &e)
+{
+    int ret = getaddrinfo(node, service, hints, res);
+
+    if(ret < 0)
+        e = error::translateAddrInfoError(ret);
+    
+    return ret;
+}
 
 } // namespace net::func

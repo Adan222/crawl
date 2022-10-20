@@ -12,7 +12,7 @@
 #include "utils/buffer/const_buffer.hpp"
 
 int main () {
-    std::string host = "www.google.com";
+    std::string host = "www.nowayifthisworks.com";
     net::tcp::resolver res;
     net::tcp::resolver::query q(host, "http");
 

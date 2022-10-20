@@ -1,5 +1,5 @@
 #include "utils/error/error.hpp"
-#include <system_error>
+#include "utils/error/netdb_category.hpp"
 
 namespace error {
 
@@ -15,6 +15,10 @@ void throwException(const Exception &e) {
 
 void getLastError(std::error_code &ec) {
     ec = std::error_code(errno, std::system_category());
+}
+
+std::error_code translateAddrInfoError(const int err) {
+    return error::make_error_code(static_cast<netdb_errc>(err));
 }
 
 } // namespace error

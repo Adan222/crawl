@@ -1,5 +1,4 @@
 #include "ip_resolver.hpp"
-#include "tests/net/test.hpp"
 
 namespace test {
 
@@ -26,7 +25,7 @@ void dumpEndpoint(const net::tcp::endpoint &end) {
     std::cout << "Address family: " << protoStr(af) << "(" << af << ")\n\n"; 
 }
 
-TEST_CASE("TCP resolver test", "[resolver]") {
+TEST_CASE("TCP endpoint", "[endpoint]") {
     net::tcp::resolver res;
     net::tcp::resolver::query q(test::host, test::port);
 
@@ -34,6 +33,20 @@ TEST_CASE("TCP resolver test", "[resolver]") {
         dumpEndpoint(i);
         REQUIRE(isValidFamily(i.getAddressFamily()));
     }
+}
+
+TEST_CASE("TCP resolver", "[resolver]") {
+    net::tcp::resolver res;
+    net::tcp::resolver::query q(test::host, test::port);
+
+    REQUIRE_NOTHROW(res.resolve(q));
+}
+
+TEST_CASE("TCP resolver failure", "[resolver]") {
+    net::tcp::resolver res;
+    net::tcp::resolver::query q(badHost, test::port);
+
+    REQUIRE_THROWS(res.resolve(q));
 }
 
 } // namespace test

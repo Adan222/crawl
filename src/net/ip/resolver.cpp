@@ -12,13 +12,14 @@ BasicResolver<Proto>::~BasicResolver() {}
 template<typename Proto>
 BasicResoults<Proto> BasicResolver<Proto>::resolve(const query &q)  {
     addrinfo_type *res;
+    net::error_code ec;
 
-    // TODO: Error handling for getaddrinfo
-    if (::getaddrinfo(q.getHostName().c_str(),
-                      q.getServiceName().c_str(),
-                      &q.getHint(), 
-                      &res) != 0)
-        std::cerr << "resolve error\n";
+    func::getaddrinfo(q.getHostName().c_str(), q.getServiceName().c_str(),
+        &q.getHint(), 
+        &res, ec);
+    
+    if(ec)
+        error::throwError(ec);
     
     return BasicResoults<Proto>::create(res);
 }

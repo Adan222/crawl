@@ -1,5 +1,4 @@
 #include "connect.hpp"
-#include "tests/net/test.hpp"
 
 namespace test {
 

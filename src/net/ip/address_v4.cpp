@@ -53,10 +53,10 @@ AddressV4 fromString(const std::string &str) {
 }
 
 AddressV4 fromString(const char *str) {
-    in4_addr_type addr;
-    ::inet_pton(AF_INET, str, &addr);
+    sockaddr_v4_type addr;
+    ::inet_pton(AF_INET, str, &addr.sin_addr);
 
-    return AddressV4(addr.s_addr);
+    return AddressV4(addr.sin_addr.s_addr);
 }
 
 } // namespace V4

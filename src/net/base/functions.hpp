@@ -14,6 +14,11 @@ int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen, net::err
 size_t send(int sockfd, const void *buf, size_t len, int flags, net::error_code &e);
 size_t recv(int sockfd, void *buf, size_t len, int flags, net::error_code &e);
 
+int getaddrinfo(const char *node, const char *service,
+    const struct addrinfo *hints,
+    struct addrinfo **res,
+    net::error_code &e);
+
 } // namespace net::func
 
 #endif // NET_BASE_FUNCTIONS_HPP_
