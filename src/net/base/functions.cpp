@@ -1,5 +1,6 @@
 #include "net/base/functions.hpp"
 #include "utils/error/error.hpp"
+#include "utils/error/netdb_category.hpp"
 
 namespace net::func {
 
@@ -44,7 +45,7 @@ int getaddrinfo(const char *node, const char *service,
     int ret = getaddrinfo(node, service, hints, res);
 
     if(ret < 0)
-        e = error::translateAddrInfoError(ret);
+        e = error::make_error_code(static_cast<error::netdb_errc>(ret));
     
     return ret;
 }

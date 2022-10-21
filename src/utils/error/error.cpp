@@ -17,8 +17,4 @@ void getLastError(std::error_code &ec) {
     ec = std::error_code(errno, std::system_category());
 }
 
-std::error_code translateAddrInfoError(const int err) {
-    return error::make_error_code(static_cast<netdb_errc>(err));
-}
-
 } // namespace error

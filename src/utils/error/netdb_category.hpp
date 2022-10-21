@@ -11,17 +11,17 @@ namespace error {
  * All posible errors returned by getaddrinfo()
  */
 enum class netdb_errc {
-    eai_addr_family = EAI_ADDRFAMILY,
-    eai_again       = EAI_AGAIN,
-    eai_badflags    = EAI_BADFLAGS,
-    eai_fail        = EAI_FAIL,
-    eai_family      = EAI_FAMILY,
-    eai_memory      = EAI_MEMORY,
-    eai_nodata      = EAI_NODATA,
-    eai_noname      = EAI_NONAME,
-    eai_service     = EAI_SERVICE,
-    eai_socktype    = EAI_SOCKTYPE,
-    eai_system      = EAI_SYSTEM,
+    addr_family = EAI_ADDRFAMILY,
+    again       = EAI_AGAIN,
+    badflags    = EAI_BADFLAGS,
+    fail        = EAI_FAIL,
+    family      = EAI_FAMILY,
+    memory      = EAI_MEMORY,
+    nodata      = EAI_NODATA,
+    noname      = EAI_NONAME,
+    service     = EAI_SERVICE,
+    socktype    = EAI_SOCKTYPE,
+    system      = EAI_SYSTEM,
 };
 
 /**
