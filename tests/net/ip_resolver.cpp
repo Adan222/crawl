@@ -17,12 +17,13 @@ void dumpEndpoint(const net::tcp::endpoint &end) {
         else
             return "UNKNOWN";
     };
-    std::cout << "=====\n";
-    std::cout << "Endpoint with address: " << end.getAddress().toString() << "\n";
-    std::cout << "On port: " << end.getPort() << "\n";
-    std::cout << "is Empty: " << std::boolalpha << end.isEmpty() << "\n"; 
+    UNSCOPED_INFO("=====\n");
+    UNSCOPED_INFO("Endpoint with address: " << end.getAddress().toString() << "\n");
+    UNSCOPED_INFO("On port: " << end.getPort() << "\n");
+    UNSCOPED_INFO("is Empty: " << std::boolalpha << end.isEmpty() << "\n"); 
+    
     const int af = end.getAddressFamily();
-    std::cout << "Address family: " << protoStr(af) << "(" << af << ")\n\n"; 
+    UNSCOPED_INFO("Address family: " << protoStr(af) << "(" << af << ")\n\n"); 
 }
 
 TEST_CASE("TCP endpoint", "[endpoint]") {

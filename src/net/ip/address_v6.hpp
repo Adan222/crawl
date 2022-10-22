@@ -31,19 +31,22 @@ class AddressV6 {
         AddressV6();
 
         /* Create address from raw bytes */
-        AddressV6(const v6ByteArray &bytes);
-        AddressV6(const v6ByteType &bytes);
+        AddressV6(const v6ByteArray &bytes, scope_id_type scope);
+        AddressV6(const v6ByteType &bytes, scope_id_type scope);
 
         ~AddressV6();
 
         std::string toString() const;
         v6ByteArray toBytes() const;
 
+        scope_id_type getScope() const;
+
         friend bool operator==(const AddressV6 &a, const AddressV6 &b);
         friend bool operator!=(const AddressV6 &a, const AddressV6 &b);
 
     private:
         in6_addr_type addr_;
+        scope_id_type scope_;
 };
 
 namespace V6 {

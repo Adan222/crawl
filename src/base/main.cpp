@@ -12,7 +12,7 @@
 #include "utils/buffer/const_buffer.hpp"
 
 int main () {
-    std::string host = "www.nowayifthisworks.com";
+    std::string host = "www.google.com";
     net::tcp::resolver res;
     net::tcp::resolver::query q(host, "http");
 
@@ -25,8 +25,8 @@ int main () {
         size_t sendLen = conn->send(http);
 
         utils::MutableBuffer buff = std::string("");
-        while (conn->recv(buff))
-            std::cout << std::string(buff) << "\n";    
+        //while (conn->recv(buff))
+            //std::cout << std::string(buff) << "\n";    
         
     } catch(const std::exception &e) {
         std::cerr << e.what() << "\n";

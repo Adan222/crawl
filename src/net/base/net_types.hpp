@@ -1,6 +1,7 @@
 #ifndef NET_BASE_NET_TYPES_HPP_
 #define NET_BASE_NET_TYPES_HPP_
 
+#include <cstdint>
 #include <system_error>
 
 #include <netinet/in.h>
@@ -21,6 +22,8 @@ typedef sockaddr_in sockaddr_v4_type;
 typedef sockaddr_in6 sockaddr_v6_type;
 typedef addrinfo addrinfo_type;
 typedef socklen_t socklen_type;
+typedef uint32_t scope_id_type;
+
 
 } // namespace net
 

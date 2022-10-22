@@ -23,9 +23,6 @@ int connect(int sockfd, const struct sockaddr *addr,
 {
     int ret = ::connect(sockfd, addr, addrlen);
     error::getLastError(e);
-
-    if(ret == -1)
-        error::throwError(e);
     
     return ret;
 }

@@ -19,7 +19,8 @@ bool operator==(const AddressV4 &a, const AddressV4 &b);
 bool operator!=(const AddressV4 &a, const AddressV4 &b);
 
 /**
- * This class represent address containing ipv4
+ * This class represent address of internet protocol 
+ * version 4
  */
 class AddressV4 {
     public:

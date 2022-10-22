@@ -6,13 +6,24 @@ int connSocket
     (const StreamSocket &sock, const tcp::endpoint &end)
 {
     net::error_code ec;
+
+    /**
+     * As we don`t have access to struct addrinfo here,
+     * we need to make addrlen by ourselves, and we do it
+     * just like getaddrinfo() dose.
+     */
     socklen_type len = end.isV4() ? 
         sizeof(sockaddr_v4_type) : sizeof(sockaddr_v6_type);
-
-    return func::connect(sock.getFileDescriptor(),
+    
+    int ret = func::connect(sock.getFileDescriptor(),
         end.getData(),
         len,
         ec);
+    
+    if(ec)
+        error::throwError(ec);
+    
+    return ret;
 }
 
 std::unique_ptr<Connection> connect(const tcp::resolver::resoults &res) {
@@ -22,11 +33,12 @@ std::unique_ptr<Connection> connect(const tcp::resolver::resoults &res) {
         try{
             // Create apropriate socket and try to connect
             StreamSocket sock(i);
-            int ret = connSocket(sock, i);
-
-            // If we get error while we establish connection,
-            // this assignment won`t execute
-            *conn = std::move(sock);
+            if(connSocket(sock, i) == 0) {
+                // If we get error while we establish connection,
+                // this assignment won`t execute
+                *conn = std::move(sock);
+                return std::move(conn);
+            }
         }
         catch(const std::exception &e) {
             std::cerr << e.what() << "\n";

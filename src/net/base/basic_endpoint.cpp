@@ -1,5 +1,6 @@
 #include "net/base/basic_endpoint.hpp"
 #include "net/base/tcp.hpp"
+#include "net/ip/address_v6.hpp"
 #include <cstring>
 
 namespace net {
@@ -40,7 +41,11 @@ ip::Address BasicEndpoint<Proto>::getAddress() const {
     if(isV4())
         return ip::AddressV4(data_.v4.sin_addr.s_addr);
     else {
-        return ip::AddressV6(data_.v6.sin6_addr.s6_addr);
+        ip::AddressV6::v6ByteArray byte;
+        ::memcpy(byte.data(), data_.v6.sin6_addr.s6_addr, 16);
+        auto scope = data_.v6.sin6_scope_id;
+
+        return ip::AddressV6(byte, scope);
     }
 }
 

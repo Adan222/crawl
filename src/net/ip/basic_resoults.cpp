@@ -1,6 +1,5 @@
 #include "net/ip/basic_resoults.hpp"
 #include "net/base/tcp.hpp"
-#include "net/ip/basic_resoults_iterator.hpp"
 
 namespace net::ip {
 
@@ -36,10 +35,13 @@ BasicResoults<Proto> BasicResoults<Proto>::create(addrinfo_type *addr)
 {
     BasicResoults<Proto> end;
     while (addr) {
-        endpoint point;
-        ::memcpy(point.getData(), addr->ai_addr, addr->ai_addrlen);
+        const int af = addr->ai_family;
+        if(af == AF_INET || af == AF_INET6) {
+            endpoint point;
+            ::memcpy(point.getData(), addr->ai_addr, addr->ai_addrlen);
 
-        end.data_.push_back(point);
+            end.data_.push_back(point);
+        }
         addr = addr->ai_next;
     }
 
