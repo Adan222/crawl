@@ -27,7 +27,7 @@ set(CRAWL_NET_SRC
     net/ip/resolver.hpp
     net/ip/resolver.cpp
     net/ip/basic_query.hpp
-    net/ip/basic_query.cpp
+    #net/ip/basic_query.cpp
     net/ip/basic_resoults.hpp
     net/ip/basic_resoults.cpp
     net/ip/basic_resoults_iterator.hpp

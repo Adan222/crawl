@@ -11,7 +11,11 @@ tcp tcp::v4() noexcept {
 }
 
 tcp tcp::v6() noexcept {
-    return tcp(AF_INET);
+    return tcp(AF_INET6);
+}
+
+tcp tcp::unspec() noexcept {
+    return tcp(AF_UNSPEC);
 }
 
 int tcp::sockType() const {

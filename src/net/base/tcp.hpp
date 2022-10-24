@@ -18,6 +18,7 @@ class tcp {
 
         static tcp v4() noexcept;
         static tcp v6() noexcept;
+        static tcp unspec() noexcept;
         
         // return socket type i.e. SOCK_STREAM
         // or SOCK_DGRAM

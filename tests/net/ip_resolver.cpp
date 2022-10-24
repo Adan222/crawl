@@ -45,9 +45,30 @@ TEST_CASE("TCP resolver", "[resolver]") {
 
 TEST_CASE("TCP resolver failure", "[resolver]") {
     net::tcp::resolver res;
-    net::tcp::resolver::query q(badHost, test::port);
+    net::tcp::resolver::query q(test::badHost, test::port);
 
     REQUIRE_THROWS(res.resolve(q));
 }
+
+TEST_CASE("TCP query ipv4", "[query]") {
+    net::tcp::resolver res;
+    net::tcp::resolver::query q(test::host, test::port, net::tcp::v4());
+
+    for(const auto &i : res.resolve(q)) {
+        dumpEndpoint(i);
+        REQUIRE(i.getAddressFamily() == AF_INET);
+    }
+}
+
+TEST_CASE("TCP query ipv6", "[query]") {
+    net::tcp::resolver res;
+    net::tcp::resolver::query q(test::host, test::port, net::tcp::v6());
+
+    for(const auto &i : res.resolve(q)) {
+        dumpEndpoint(i);
+        REQUIRE(i.getAddressFamily() == AF_INET6);
+    }
+}
+
 
 } // namespace test
