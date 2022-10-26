@@ -89,13 +89,16 @@ class BasicQuery {
          *
          * @param data template type which we convert to std::string
          * @return converted std::string
+         *
+         * NOTE: Should there be any constexpr functions as query will 
+         * be mostly dependent on runtime values?
          */
         template<typename T>
-        inline const std::string toString(const T &data) {
-            // That`s cleaver 
-            std::ostringstream ss;
-            ss << data;
-            return ss.str();
+        inline constexpr std::string toString(const T &data) {
+            if constexpr (std::is_integral_v<T>)
+                return std::to_string(data);
+            else
+                return data;
         }
 
         inline constexpr void createEmptyHint() {
